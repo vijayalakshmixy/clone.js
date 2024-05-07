@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script defer src="clone.js"></script> -->
+    <style>
+        img{
+            height:300px;
+            width:200px;
+        }
+        .container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding:10px ;
+            margin: 10px;
+            border:  2px solid black;
+            width: 300px;
+            background-color: pink;
+
+        }
+        button{
+            margin: 10px;
+            padding: 10px;
+            border: none;
+            background-color: grey;
+            cursor: pointer;
+            width: 200px;
+        }
+        header{
+        background-color:orange ;
+        height: 73px;
+    }
+    .select{
+        margin-left: 210px;
+        height: 40px;
+        width: 70px;
+    }
+    .input{
+        height: 40px;
+        width: 400px;
+
+    }
+    button{
+        height: 30px;
+        width: 100px;
+        background-color: white;
+        margin-left: 10px;
+        border: 2px  solid black;
+        cursor: pointer;
+    }
+    .btn{
+        height: 30px;
+        width: 90px;
+        background-color: white;
+        margin-left: 10px;
+        border: 2px  solid black;
+        cursor: pointer;
+    }
+        /* .main{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            gap: 9px;
+            flex-direction: column;
+            grid-template-columns:  repeat(4);
+        } */
+        .main{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="icon">
+            <i class="fa fa-imdb" style="font-size:49px;color:black; margin-left: 40px;"></i>
+            <span style="font-size: 30px; margin-left: 20px;"><i class="fa fa-bars" style="margin-top: -20px; margin-left: 50px;font-size: 35px;"></i>menu</span>
+
+            <select class="select">
+                <option> All</option>
+            </select>
+            <input type="text" class="input" placeholder="search">
+            <button>IMDB Pro</button>
+            <button> &#9960 watchlist </button>
+            <button>Sign In</button>
+                <select class="btn">
+                    <option>En</option>
+                </select>  
+        </div>
+    </header>
+
+
+
+    <div class="main">
+        <div class="container">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqhBvbYADIzCTNUhAIukFmEAoiToIIJrseog&s">
+            <h2>Rating</h2>
+            <h2>Movie Name</h2>
+            <button>Watch</button>
+            <button>Trailer</button>
+        </div>
+
+
+    </div>
+
+    <button onclick="showData()">ShowData</button>
+
+    <script>
+        
+// async function getData(){
+//   const url = 'https://imdb-top-100-movies.p.rapidapi.com/';
+// const options = {
+// 	method: 'GET',
+// 	headers: {
+// 		'X-RapidAPI-Key': '80c2f4c336msh937e9ca163922c3p14dd1djsnac8ab5304e61',
+// 		'X-RapidAPI-Host': 'imdb-top-100-movies.p.rapidapi.com'
+// 	}
+// };
+
+// try {
+// 	const response = await fetch(url, options);
+// 	const result = await response.text();
+//   localStorage.setItem("data",JSON
+//        .stringify(result));
+// 	      console.log(result);
+// } catch (error) {
+// 	console.error(error);
+// }
+
+// };
+// window.addEventListener("DOMContentLoaded",showData());
+showData = () => {
+    // console.log("showData")
+    let data = JSON.parse(localStorage.getItem("data"));
+    data = JSON.parse(data)
+    console.log(data)
+    for (let i = 0; i < data.length; i++) {
+    let div = document.createElement("div")
+    div.className = "container";
+    let h = `<img src="${data[i].image}" alt="data image" class="image">
+    <h2>${data[i].rating}</h2>
+    <h2>${data[i].title}</h2>`
+    div.innerHTML += h;
+    // document.getElementsByClassName("container")[0].appendChild("div")
+    document.querySelector(".main").appendChild(div);
+    // h2.innerText=data[i].title;
+    // document.body.appendChild(h2);
+    console.log(data[i]);
+    }
+
+};
+
+
+// window.addEventListener("DOMContentLoaded",getData());
+// showData = () => {
+//   let movies = JSON.parse(localStorage.getItem("movies"));
+//   movies = JSON.parse(movies)
+//   // console.log(typeof movies)
+//   console.log(movies)
+//   for (let i = 0; i < movies.length; i++) {
+//     let div = document.createElement("div")
+//     div.className = "container";
+//  let h = `<img src="${movies[i].image}" alt="movie image" class="image">
+//   <h2>${movies[i].rating}</h2>
+//   <h2>${movies[i].title}</h2>
+//   <button id="btn">Watch</button>
+//   <button id="t">trailer</button>`;
+//     div.innerHTML += h;
+//     document.getElementsByClassName("container")[0].appendChild("div")
+//     // h1.innerText=movies[i].title;
+//     //  document.body.appendChild(h1); 
+//     console.log(movies[i]);
+//   }
+
+// }
+    </script>
+    
+</body>
+</html>
